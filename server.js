@@ -29,6 +29,3 @@ console.log(products);
 
 // spawn('open', ['http://www.walmart.com/search/?query=' + search + '&stores=' + storeIds+ '&redirect=false']);
 spawn('open', [products[0].url]);
-
-
-
