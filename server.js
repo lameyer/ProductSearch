@@ -34,8 +34,14 @@ var getWalmartProducts = function(query, zipcode) {
 };
 
 
-app.get('/', function (req, res) {
-  res.send(JSON.stringify(getWalmartProducts('dog toys', '95073')))
+app.get('/', function (request, response) {
+  var search = request.query.search;
+  var zipcode = request.query.zipcode;
+  if (search && zipcode) {
+    response.send(JSON.stringify(getWalmartProducts(search, zipcode)));
+  } else {
+    response.send(JSON.stringify({error: 'no search or zipcode entered'}));
+  };
 });
 
 app.listen(app.get('port'), function() {
