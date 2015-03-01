@@ -1,0 +1,17 @@
+{
+  "name": "ProductSearch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "cheerio": "^0.18.0",
+    "sync-request": "^2.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Lindsey Meyer",
+  "license": "MIT"
+}
