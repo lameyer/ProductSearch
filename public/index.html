@@ -15,7 +15,7 @@
       <input type='submit' value='Search' ng-disabled='searchController.isRunning || !searchController.query'>
     </form>
     <p ng-if='searchController.isRunning'>Loading...</p>
-    <table style='width:100%'>
+    <table style='width:80%'>
       <tr ng-repeat='products in searchController.searchResults'>
         <td><a href='{{products[0].url}}'><img src='{{products[0].imageURL}}'></a></td>
         <td>
@@ -23,10 +23,12 @@
           <p><strong>${{products[0].price.toFixed(2)}}</strong></p>
         </td>
         <td>
-          <p>Available at:</p>
           <p ng-repeat='product in products'>
-            <a href='{{product.url}}'><strong>{{product.store.type}}</strong></a>
-            {{product.store.city}}, {{product.store.region}}
+            <strong>{{product.store.distance}} miles away</strong>
+            at
+            <a href='{{product.url}}'>{{product.store.type}}</a>
+            in
+            <a href='http://maps.google.com/?q={{product.store.type}} {{product.store.address}}, {{product.store.city}}, {{product.store.region}}, {{product.store.zipcode}}'>{{product.store.city}}, {{product.store.region}}</a>
           </p>
         </td>
       </tr>
