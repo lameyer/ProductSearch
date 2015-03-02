@@ -1,0 +1,20 @@
+img {
+  max-height: 100px;
+  width: auto;
+}
+
+td {
+  padding-top: 30px;
+}
+
+td.image {
+  text-align: center
+}
+
+td.product {
+  vertical-align: top;
+}
+
+td.stores {
+  vertical-align: top;
+}

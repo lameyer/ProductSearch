@@ -2,6 +2,7 @@
 <html ng-app='ProductSearch'>
   <head>
     <title>Find My Items</title>
+    <link rel='stylesheet' type='text/css' href='style.css'>
     <script type='text/javascript' src='angular.min.js'></script>
     <script type='text/javascript' src='client.js'></script>
   </head>
@@ -15,14 +16,14 @@
       <input type='submit' value='Search' ng-disabled='searchController.isRunning || !searchController.query'>
     </form>
     <p ng-if='searchController.isRunning'>Loading...</p>
-    <table style='width:80%'>
+    <table style='width:100%'>
       <tr ng-repeat='products in searchController.searchResults'>
-        <td><a href='{{products[0].url}}'><img src='{{products[0].imageURL}}'></a></td>
-        <td>
-          <a href='{{products[0].url}}'>{{products[0].name}}</a>
+        <td class='image'><a href='{{products[0].url}}'><img src='{{products[0].imageURL}}'></a></td>
+        <td class='product'>
+          <p><a href='{{products[0].url}}'>{{products[0].name}}</a></p>
           <p><strong>${{products[0].price.toFixed(2)}}</strong></p>
         </td>
-        <td>
+        <td class='stores'>
           <p ng-repeat='product in products'>
             <strong>{{product.store.distance}} miles away</strong>
             at
