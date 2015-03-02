@@ -8,7 +8,9 @@ app.get('/', function (request, response) {
   var search = request.query.search;
   var zipcode = request.query.zipcode;
   if (search && zipcode) {
-    response.send(JSON.stringify(getWalmartProducts(search, zipcode)));
+    getWalmartProducts(search, zipcode, function(products) {
+      response.send(JSON.stringify(products));
+    });
   } else {
     response.send(JSON.stringify({error: 'no search or zipcode entered'}));
   };
