@@ -47,7 +47,7 @@ var getProductsAtStore = function(query, store, callback) {
           return item.id === product.id;
         });
         if (matchingItem.length > 0) {
-          product.upc = matchingItem[0].upc;
+          product.upc = matchingItem[0].upc.slice(2); //remove leading zeros
         }
       }
 
