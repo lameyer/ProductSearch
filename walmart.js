@@ -5,7 +5,12 @@ var async = require('async');
 var getProductsAtStore = function(query, store, callback) {
 
   var queryURL = 'http://www.walmart.com/search/?query=' + query + '&stores=' + store.id + '&redirect=false'
-  var response = request(queryURL, function(error, response, body) {
+  var response = request({url: queryURL, timeout: 4000}, function(error, response, body) {
+
+    if (error || !body) {
+      callback([]);
+      return;
+    }
 
     $ = cheerio.load(body.toString());
 
@@ -66,7 +71,12 @@ var getWalmartProducts = function(query, zipcode, radius, callback) {
 
   var storeURL = 'http://www.walmart.com/search/store-availability?location=' + zipcode
 
-  request(storeURL, function(error,reponse,body) {
+  request({url: storeURL, timeout: 4000}, function(error,reponse,body) {
+
+    if (error || !body) {
+      callback([]);
+      return;
+    }
 
     var storeResponse = JSON.parse(body);
 
