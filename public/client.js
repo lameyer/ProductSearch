@@ -1,7 +1,6 @@
 var app = angular.module('ProductSearch',[]);
 app.controller('SearchController', function($http) {
   var controller = this;
-  controller.query = 'Groot';
   controller.zipcode = '95073';
   controller.isRunning = false;
 
