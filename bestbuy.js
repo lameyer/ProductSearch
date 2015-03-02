@@ -1,8 +1,8 @@
 var request = require('request');
 
-var getProducts = function(query, zipcode, radius, callback) {
+var getBestBuyProducts = function(query, zipcode, radius, callback) {
 
-  var queryURL = 'http://api.remix.bestbuy.com/v1/stores(area(' + zipcode + ','+radius+'))+products(search=' + query.split(' ').join('&search=') + ')?apiKey=' + process.env.BEST_BUY_API_KEY + '&format=json&show=storeId,city,region,name,distance,products.name,products.upc,products.salePrice,products.url'
+  var queryURL = 'http://api.remix.bestbuy.com/v1/stores(area(' + zipcode + ','+radius+'))+products(search=' + query.split(' ').join('&search=') + ')?apiKey=' + process.env.BEST_BUY_API_KEY + '&format=json&show=storeId,storeType,address,city,region,postalCode, name,distance,products.name,products.upc,products.salePrice,products.url'
 
   console.log(queryURL);
 
@@ -13,9 +13,11 @@ var getProducts = function(query, zipcode, radius, callback) {
 
     queryResponse.stores.forEach(function(store) {
       var prettyStore = {
-        name: store.name,
+        storeType: store.storeType,
+        address: store.address,
         city: store.city,
         region: store.region,
+        zipcode: store.postalCode,
         distance: store.distance,
         type: 'Best Buy'
       }
@@ -41,4 +43,4 @@ var getProducts = function(query, zipcode, radius, callback) {
 
 };
 
-module.exports = getProducts;
+module.exports = getBestBuyProducts;
