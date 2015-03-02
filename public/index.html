@@ -15,14 +15,24 @@
       <input type='submit' value='Search' ng-disabled='searchController.isRunning'>
     </form>
     <p ng-if='searchController.isRunning'>Loading...</p>
-    <section ng-repeat='(upc,products) in searchController.searchResults'>
-      <img src='{{products[0].imageURL}}'>
-      <a href='{{products[0].url}}'>{{products[0].name}}</a>
-      <strong>{{products[0].price}}</strong>
-      <p>{{products[0].store.type}}</p>
-      <p>{{products[0].store.city}}, {{products[0].store.region}}</p>
-      <p>Distance: {{products[0].store.distance}} miles</p>
-    </section>
+    <table style='width:100%'>
+      <tr ng-repeat='products in searchController.searchResults'>
+        <td><a href='{{products[0].url}}'><img src='{{products[0].imageURL}}'></a></td>
+        <td>
+          <a href='{{products[0].url}}'>{{products[0].name}}</a>
+          <p><strong>{{products[0].price}}</strong></p>
+          <p>{{products[0].store.city}}, {{products[0].store.region}}</p>
+          <p>Distance: {{products[0].store.distance}} miles</p>
+        </td>
+        <td>
+          <p>Available at:</p>
+          <p ng-repeat='product in products'>
+            <a href='{{product.url}}'><strong>{{product.store.type}}</strong></a>
+            {{product.store.city}}, {{product.store.region}}
+          </p>
+        </td>
+      </tr>
+    </table>
 
   </body>
 </html>
