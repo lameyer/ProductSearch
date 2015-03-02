@@ -1,6 +1,5 @@
 var express = require('express');
-var getWalmartProducts = require('./walmart');
-var getBestBuyProducts = require('./bestbuy');
+var getProducts = require('./products');
 
 var app = express();
 app.set('port', (process.env.PORT || 5000));
@@ -10,7 +9,7 @@ app.get('/', function (request, response) {
   var zipcode = request.query.zipcode;
   var radius = request.query.radius || 15;
   if (search && zipcode) {
-    getWalmartProducts(search, zipcode, radius, function(products) {
+    getProducts(search, zipcode, radius, function(products) {
       response.send(JSON.stringify(products));
     });
   } else {

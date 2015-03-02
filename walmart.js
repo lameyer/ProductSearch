@@ -69,7 +69,6 @@ var getWalmartProducts = function(query, zipcode, radius, callback) {
   request(storeURL, function(error,reponse,body) {
 
     var storeResponse = JSON.parse(body);
-    var products = [];
 
     var queryStore = function(store, callback) {
       getProductsAtStore(query, store, function(products) {
@@ -78,15 +77,12 @@ var getWalmartProducts = function(query, zipcode, radius, callback) {
     }
 
     async.map(storeResponse.stores, queryStore, function(err, productsByStore){
+      var products = [];
       productsByStore.forEach(function(productList) {
         productList.forEach(function(product) {
           products[products.length] = product;
         });
       });
-      products.sort(function(a,b) {
-        return a.distance - b.distance;
-      });
-
       callback(products);
     });
 

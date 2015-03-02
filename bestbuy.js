@@ -33,10 +33,6 @@ var getBestBuyProducts = function(query, zipcode, radius, callback) {
       });
     });
 
-      // products.sort(function(a,b) {
-      //   return a.distance - b.distance;
-      // });
-
     callback(products);
 
   });
