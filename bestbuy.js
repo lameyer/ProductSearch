@@ -23,7 +23,7 @@ var getBestBuyProducts = function(query, zipcode, radius, callback) {
         var prettyProduct = {
           name: product.name,
           upc: product.upc.slice(0,-1), //removed check digit
-          price: product.salePrice,
+          price: +product.salePrice,
           url: product.url,
           imageURL: product.image,
           store: prettyStore

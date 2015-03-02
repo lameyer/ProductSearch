@@ -20,9 +20,7 @@
         <td><a href='{{products[0].url}}'><img src='{{products[0].imageURL}}'></a></td>
         <td>
           <a href='{{products[0].url}}'>{{products[0].name}}</a>
-          <p><strong>{{products[0].price}}</strong></p>
-          <p>{{products[0].store.city}}, {{products[0].store.region}}</p>
-          <p>Distance: {{products[0].store.distance}} miles</p>
+          <p><strong>${{products[0].price.toFixed(2)}}</strong></p>
         </td>
         <td>
           <p>Available at:</p>

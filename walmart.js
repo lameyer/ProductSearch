@@ -32,7 +32,7 @@ var getProductsAtStore = function(query, store, callback) {
       var product = {
         id: $(this).attr('data-item-id'),
         name: $(this).find('.js-product-title').text(),
-        price: $(this).find('.price').text(),
+        price: +$(this).find('.price').text().split('-')[0].split('$').join('').split(',').join(''),
         url: 'http://www.walmart.com' + $(this).find('.js-product-title').attr('href'),
         imageURL: $(this).find('.product-image').attr('data-default-image'),
         store: {
