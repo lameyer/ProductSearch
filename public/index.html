@@ -12,7 +12,7 @@
       <input autofocus placeholder='Groot' ng-model='searchController.query'>
       <strong>near zipcode</strong>
       <input ng-model='searchController.zipcode'>
-      <input type='submit' value='Search' ng-disabled='searchController.isRunning'>
+      <input type='submit' value='Search' ng-disabled='searchController.isRunning || !searchController.query'>
     </form>
     <p ng-if='searchController.isRunning'>Loading...</p>
     <table style='width:100%'>

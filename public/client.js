@@ -1,10 +1,14 @@
 var app = angular.module('ProductSearch',[]);
-app.controller('SearchController', function($http) {
+app.controller('SearchController', function($http, $location) {
   var controller = this;
-  controller.zipcode = '95073';
+  controller.query = $location.search().search;
+  controller.zipcode = $location.search().zipcode || '95073';
   controller.isRunning = false;
 
   controller.submit = function() {
+    $location.search('search',controller.query);
+    $location.search('zipcode',controller.zipcode);
+
     controller.isRunning= true;
 
     $http.get('/api/search.json', {
@@ -22,4 +26,9 @@ app.controller('SearchController', function($http) {
       controller.isRunning = false;
     });
   }
+
+  if (controller.query && controller.zipcode) {
+    controller.submit();
+  }
+
 });
