@@ -1,4 +1,5 @@
 var async = require('async');
+var _ = require('underscore');
 var getWalmartProducts = require('./walmart');
 var getBestBuyProducts = require('./bestbuy');
 
@@ -24,6 +25,9 @@ var getProducts = function(query, zipcode, radius, callback) {
     });
     products.sort(function(a,b) {
       return a.store.distance - b.store.distance;
+    });
+    products = _.groupBy(products, function(product) {
+      return product.upc;
     });
 
     callback(products);
