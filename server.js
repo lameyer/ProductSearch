@@ -4,7 +4,9 @@ var getProducts = require('./products');
 var app = express();
 app.set('port', (process.env.PORT || 5000));
 
-app.get('/', function (request, response) {
+app.use(express.static(__dirname + '/public'));
+
+app.get('/api/search.json', function (request, response) {
   var search = request.query.search;
   var zipcode = request.query.zipcode;
   var radius = request.query.radius || 15;
